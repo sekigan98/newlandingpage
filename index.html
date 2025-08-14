@@ -148,20 +148,38 @@ src="https://www.facebook.com/tr?id=1093070186086121&ev=PageView&noscript=1"
 
   const BASE_MESSAGE = 'Hola, quiero crear mi usuario. Mi nombre es:';
 
-  document.getElementById('cta-whatsapp').addEventListener('click', function (e) {
-    const name = document.getElementById('userName').value.trim();
-    if (!name) {
-      alert('Por favor escribe tu nombre antes de continuar.');
-      e.preventDefault();
-      return;
-    }
+  // Detectar dispositivo móvil (incluye tablet)
+const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
-    // Seleccionar un número aleatorio
-    const randomPhone = NUMBERS[Math.floor(Math.random() * NUMBERS.length)];
+// Cambiar placeholder según dispositivo
+document.getElementById('userName').setAttribute(
+  'placeholder',
+  isMobile ? 'Escribe tu nombre para WhatsApp' : 'Escribe tu nombre para WhatsApp Web'
+);
 
-    const link = `https://wa.me/${randomPhone}?text=${encodeURIComponent(BASE_MESSAGE + ' ' + name)}`;
+document.getElementById('cta-whatsapp').addEventListener('click', function (e) {
+  const name = document.getElementById('userName').value.trim();
+  if (!name) {
+    alert('Por favor escribe tu nombre antes de continuar.');
+    e.preventDefault();
+    return;
+  }
+
+  // Seleccionar un número aleatorio
+  const randomPhone = NUMBERS[Math.floor(Math.random() * NUMBERS.length)];
+
+  const link = isMobile
+    ? `https://wa.me/${randomPhone}?text=${encodeURIComponent(BASE_MESSAGE + ' ' + name)}` // móvil
+    : `https://web.whatsapp.com/send?phone=${randomPhone}&text=${encodeURIComponent(BASE_MESSAGE + ' ' + name)}`; // escritorio
+
+  if (isMobile) {
     this.setAttribute('href', link);
-fbq('track', 'Contact');
+  } else {
+    e.preventDefault();
+    window.open(link, '_blank');
+  }
+
+  fbq('track', 'Contact');
   });
 </script>
 </body>
