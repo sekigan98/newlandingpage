@@ -164,15 +164,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const randomPhone = NUMBERS[Math.floor(Math.random() * NUMBERS.length)];
 
-// ➡️ Enviar datos a Google Sheet
-fetch("https://script.google.com/macros/s/AKfycbxgmagXId0bIlCnnWQwNEjxwd096bg8piq7auBvmAqLfO4w7rpQz4kt_GYXKe31KLTOJw/exec", {
-  method: "POST",
-  body: JSON.stringify({
-    fecha: new Date().toISOString(),
-    numero: randomPhone,
-    nombre: name || "(Sin nombre)",
-    dispositivo: isMobile ? "Mobile" : "Desktop"
-  })
+  // Enviar datos al Apps Script
+    fetch("https://script.google.com/macros/s/AKfycbylLPPPHBv8R1C7BYbOaN2nH3mf1DgvATrVAay3OhETx-BZIMH-Wuu1ztlpcjE-gTRY_A/exec", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        numero: randomPhone,
+        nombre: name,
+        dispositivo: isMobile ? "Móvil" : "Desktop"
+      })
+    }).catch(err => console.error("Error enviando a Google Sheet:", err));
 });
 
     const link = isMobile
