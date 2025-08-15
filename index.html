@@ -174,16 +174,10 @@ document.addEventListener('DOMContentLoaded', function () {
       window.open(link, '_blank', 'noopener,noreferrer');
     }
 
-    // Tracking Pixel Meta
+    // Tracking Pixel Meta (solo contacto)
     if (typeof fbq === 'function') {
       fbq('track', 'Contact');
       fbq('trackCustom', 'InicioConversacion');
-
-      // Evento de "venta" simbólica para optimización
-      fbq('track', 'Purchase', {
-        value: 1.00, // Valor simbólico
-        currency: 'USD'
-      });
     }
   });
 
