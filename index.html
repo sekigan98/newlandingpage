@@ -164,7 +164,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const randomPhone = NUMBERS[Math.floor(Math.random() * NUMBERS.length)];
 
-  // Enviar datos al Apps Script
+    // Enviar datos al Apps Script
     fetch("https://script.google.com/macros/s/AKfycbylLPPPHBv8R1C7BYbOaN2nH3mf1DgvATrVAay3OhETx-BZIMH-Wuu1ztlpcjE-gTRY_A/exec", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -174,8 +174,8 @@ document.addEventListener('DOMContentLoaded', function () {
         dispositivo: isMobile ? "Móvil" : "Desktop"
       })
     }).catch(err => console.error("Error enviando a Google Sheet:", err));
-});
 
+    // Crear link de WhatsApp
     const link = isMobile
       ? `https://wa.me/${randomPhone}?text=${encodeURIComponent(BASE_MESSAGE + ' ' + name)}`
       : `https://web.whatsapp.com/send?phone=${randomPhone}&text=${encodeURIComponent(BASE_MESSAGE + ' ' + name)}`;
@@ -192,6 +192,7 @@ document.addEventListener('DOMContentLoaded', function () {
       fbq('track', 'Contact');
       fbq('trackCustom', 'InicioConversacion');
     }
+
   });
 
 });
