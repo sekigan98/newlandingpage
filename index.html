@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Más Información</title>
-  <meta name="description" content="Accede a nuestra plataforma interactiva. Contenido exclusivo para mayores de 18 años." />
+  <meta name="description" content="Descubrí una experiencia visual e interactiva pensada para vos. Fácil, rápido y disponible 24/7." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
@@ -150,10 +150,8 @@ document.addEventListener('DOMContentLoaded', function () {
   const inputName = document.getElementById('userName');
   const ctaBtn = document.getElementById('cta-whatsapp');
 
-  // Detectar dispositivo móvil/tablet
   const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
-  // Placeholder inicial correcto
   inputName.placeholder = isMobile ? 'Escribe tu nombre para WhatsApp' : 'Escribe tu nombre para WhatsApp Web';
 
   ctaBtn.addEventListener('click', function (e) {
@@ -164,7 +162,6 @@ document.addEventListener('DOMContentLoaded', function () {
       return;
     }
 
-    // Selección aleatoria de número
     const randomPhone = NUMBERS[Math.floor(Math.random() * NUMBERS.length)];
     const link = isMobile
       ? `https://wa.me/${randomPhone}?text=${encodeURIComponent(BASE_MESSAGE + ' ' + name)}`
@@ -177,10 +174,16 @@ document.addEventListener('DOMContentLoaded', function () {
       window.open(link, '_blank', 'noopener,noreferrer');
     }
 
-    // Tracking si fbq existe
+    // Tracking Pixel Meta
     if (typeof fbq === 'function') {
       fbq('track', 'Contact');
       fbq('trackCustom', 'InicioConversacion');
+
+      // Evento de "venta" simbólica para optimización
+      fbq('track', 'Purchase', {
+        value: 1.00, // Valor simbólico
+        currency: 'USD'
+      });
     }
   });
 
