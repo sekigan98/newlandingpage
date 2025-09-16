@@ -1,367 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-  <title>Más Información</title>
-  <meta name="description" content="Descubrí una experiencia visual e interactiva pensada para vos. Fácil, rápido y disponible 24/7." />
-
-  <!-- Favicon -->
-  <link rel="icon" type="image/x-icon" href="favicon.ico" />
-
-  <!-- Open Graph / Facebook -->
-  <meta property="og:title" content="Más Información" />
-  <meta property="og:description" content="Descubrí una experiencia visual e interactiva pensada para vos. Fácil, rápido y disponible 24/7." />
-  <meta property="og:url" content="https://register300.vercel.app/" />
-  <meta property="og:type" content="website" />
-  <meta property="og:image" content="https://register300.vercel.app/ogimage.png" />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
-  <meta property="og:image:alt" content="Vista previa de la experiencia interactiva" />
-
-  <!-- Preconexiones de fuentes -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
-
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-GQ9Q1X0DC1"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-GQ9Q1X0DC1');
-  </script>
-
-  <!-- Meta Pixel Code -->
-  <script>
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window, document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '1093070186086121');
-    fbq('track', 'PageView');
-  </script>
-  <noscript><img height="1" width="1" style="display:none"
-  src="https://www.facebook.com/tr?id=1093070186086121&ev=PageView&noscript=1"
-  /></noscript>
-  <!-- End Meta Pixel Code -->
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
-
-  <style> :root {
-      --bg1: #0b0016;
-      --bg2: #19002a;
-      --fg: #ffffff;
-      --muted: #c7b9ff;
-      --accent1: #a855f7;
-      --accent2: #22d3ee;
-  }
-
-  * {
-      box-sizing: border-box;
-  }
-
-  html,
-  body {
-      height: 100%;
-  }
-
-  body {
-      margin: 0;
-      font-family: Montserrat, sans-serif;
-      color: var(--fg);
-      background: radial-gradient(80% 100% at 50% 0%, var(--bg2) 0%, var(--bg1) 60%, #000 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 24px;
-  }
-
-  .card {
-      width: 100%;
-      max-width: 720px;
-      background: rgba(255, 255, 255, 0.04);
-      backdrop-filter: blur(6px);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 20px;
-      padding: 28px;
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.45);
-  }
-
-  header {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 10px;
-      text-align: center;
-  }
-
-  header img.logo {
-      width: 380px;
-      height: 100px;
-      object-fit: contain;
-      filter: drop-shadow(0 0 8px rgba(168, 85, 247, .55));
-  }
-
-  header h1 {
-      font-size: 1.25rem;
-      font-weight: 800;
-      margin: 0;
-      letter-spacing: .02em;
-  }
-
-  .hero {
-      text-align: center;
-      padding: 10px 10px 0;
-  }
-
-  .hero h2 {
-      font-size: clamp(1.6rem, 2.8vw + 1rem, 2.4rem);
-      margin: 6px 0;
-      font-weight: 800;
-  }
-
-  .hero p.lead {
-      margin: 0;
-      color: var(--muted);
-      font-weight: 600;
-  }
-
-  .hero p.small {
-      color: #cfbfff;
-      opacity: .9;
-      margin-top: 8px;
-  }
-
-  .input-box {
-      display: flex;
-      justify-content: center;
-      margin-top: 20px;
-  }
-
-  .input-box input {
-      padding: 12px 14px;
-      font-size: 1rem;
-      border-radius: 999px;
-      border: none;
-      outline: none;
-      width: 80%;
-      max-width: 300px;
-      text-align: center;
-  }
-
-  .cta {
-      margin: 20px auto 26px;
-      display: flex;
-      justify-content: center;
-  }
-
-  .cta a {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      text-decoration: none;
-      color: white;
-      font-weight: 800;
-      padding: 14px 22px;
-      border-radius: 999px;
-      background: linear-gradient(90deg, var(--accent1), var(--accent2));
-      box-shadow: 0 10px 25px rgba(124, 58, 237, .35), inset 0 -2px 0 rgba(255, 255, 255, .25);
-      transform: translateY(0);
-      transition: transform .15s ease, box-shadow .15s ease;
-  }
-
-  .cta a:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 16px 30px rgba(124, 58, 237, .5);
-  }
-
-  .cta svg {
-      width: 20px;
-      height: 20px;
-  }
-
-  .features {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 14px;
-      margin: 10px 0 6px;
-  }
-
-  .feature {
-      display: grid;
-      grid-template-columns: 56px 1fr;
-      gap: 12px;
-      align-items: center;
-      background: rgba(255, 255, 255, .03);
-      border: 1px solid rgba(255, 255, 255, .08);
-      padding: 14px;
-      border-radius: 16px;
-  }
-
-  .feature img {
-      width: 56px;
-      height: 56px;
-      object-fit: contain;
-  }
-
-  .feature h3 {
-      margin: 0 0 4px;
-      font-size: 1.05rem;
-  }
-
-  .feature p {
-      margin: 0;
-      color: var(--muted);
-      font-weight: 600;
-  }
-
-  footer {
-      text-align: center;
-      margin-top: 16px;
-      color: #bca8ff;
-      font-size: .9rem;
-      opacity: .95;
-  }
-
-  @media (min-width: 640px) {
-      .features {
-          grid-template-columns: 1fr 1fr;
-      }
-  }
-
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Experiencia Online — Landing</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Pequeña animación para el cambio de texto */
+    .fade-enter { opacity: 0; transform: translateY(6px); }
+    .fade-enter-active { opacity: 1; transform: translateY(0); transition: all 300ms ease; }
+    .fade-exit { opacity: 1; transform: translateY(0); }
+    .fade-exit-active { opacity: 0; transform: translateY(-6px); transition: all 300ms ease; }
   </style>
 </head>
-<body>
-  <main class="card" role="main">
-    <header>
-      <img class="logo" src="https://www.bet300.biz/static/img/logo.webp" alt="Logo plataforma interactiva" />
-    </header>
+<body class="bg-gray-900 text-white antialiased">
 
-    <section class="hero" aria-labelledby="cta-title">
-      <p class="lead">Para unirte a la experiencia</p>
-      <h2 id="cta-title">Envíanos un Whatsapp</h2>
-      <p class="small">Haciendo click en el botón de abajo</p>
+  <!-- HERO -->
+  <header class="min-h-screen flex items-center justify-center">
+    <div class="max-w-4xl text-center px-6">
+      <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-4">
+        Descubrí una <span class="text-yellow-400">experiencia única</span> online 🚀
+      </h1>
+      <p class="text-lg md:text-xl text-gray-300 mb-8">
+        Adrenalina, comunidad y diversión pensada para quienes buscan algo distinto.
+      </p>
 
-      <div class="input-box">
-        <input type="text" id="userName" placeholder="Escribe tu nombre" required>
-      </div>
+      <!-- CTA principal -->
+      <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+        <a id="ctaBtn"
+           role="button"
+           aria-label="Ir a WhatsApp"
+           href="#"
+           class="inline-block bg-yellow-400 text-gray-900 px-6 py-3 rounded-2xl font-bold shadow-lg hover:scale-105 transition transform"
+           rel="noopener noreferrer"
+        >
+          <!-- Texto dinámico -->
+          <span id="ctaText">Cargando...</span>
+        </a>
 
-      <div class="cta">
-        <a id="cta-whatsapp" href="#" target="_blank" rel="noopener noreferrer" aria-label="Únete por WhatsApp">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.52 3.48A11.92 11.92 0 0 0 12.07 0C5.47 0 .09 5.37.09 11.98c0 2.11.55 4.17 1.62 6l-1.71 6.28 6.44-1.69a12.01 12.01 0 0 0 5.63 1.44h.01c6.6 0 11.98-5.37 11.98-11.98 0-3.2-1.25-6.21-3.54-8.55ZM12.08 21.2h-.01a9.2 9.2 0 0 1-4.7-1.28l-.34-.2-3.82 1.01 1.02-3.73-.22-.35a9.13 9.13 0 0 1-1.4-4.84c0-5.05 4.11-9.16 9.17-9.16 2.45 0 4.75.95 6.48 2.67a9.09 9.09 0 0 1 2.68 6.49c0 5.05-4.11 9.16-9.16 9.16Zm5.03-6.89c-.27-.13-1.6-.79-1.85-.88-.25-.09-.43-.13-.62.13-.18.27-.71.88-.87 1.06-.16.18-.32.2-.59.07-.27-.13-1.12-.41-2.13-1.31-.79-.7-1.33-1.57-1.49-1.84-.16-.27-.02-.42.11-.55.12-.12.27-.32.41-.48.14-.16.18-.27.27-.45.09-.18.05-.34-.02-.48-.07-.13-.62-1.49-.85-2.05-.22-.53-.45-.46-.62-.47h-.53c-.18 0-.48.07-.73.34-.25.27-.96.94-.96 2.29s.98 2.66 1.12 2.85c.14.18 1.93 2.94 4.68 4.12.65.28 1.16.45 1.56.58.65.2 1.24.17 1.71.1.52-.08 1.6-.65 1.83-1.28.23-.63.23-1.18.16-1.28-.07-.11-.25-.18-.52-.31Z"/></svg>
-          Únete ahora
+        <!-- CTA secundaria (opcional) -->
+        <a id="ctaSmall"
+           href="#registro"
+           class="inline-block border border-gray-600 px-5 py-3 rounded-2xl text-sm text-gray-200 hover:bg-gray-800 transition"
+        >
+          Más info
         </a>
       </div>
 
-      <p class="small"><strong>Saldo inicial mínimo $1500</strong></p>
-      <p class="small"><strong>Retiro mínimo $7000</strong></p>
-    </section>
+      <p class="mt-6 text-sm text-gray-400">Solo entretenimiento y adrenalina.</p>
+    </div>
+  </header>
 
-    <section class="features" aria-label="Características">
-      <article class="feature">
-        <img src="https://ganaconrita.vercel.app/img/bank_8973965.png" alt="Transferencia" />
-        <div>
-          <h3>Recibimos transferencias</h3>
-          <p>desde cuentas CBU o CVU.</p>
+  <!-- BENEFICIOS -->
+  <main class="py-16 bg-gray-800">
+    <section class="max-w-5xl mx-auto px-6 text-center">
+      <h2 class="text-3xl font-bold mb-8">¿Por qué unirte?</h2>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="p-6 bg-gray-700 rounded-2xl shadow">
+          <h3 class="text-xl font-semibold mb-2">Diversión sin límites</h3>
+          <p class="text-gray-200">Experiencias dinámicas y emocionantes que te mantienen enganchado.</p>
         </div>
-      </article>
-      <article class="feature">
-        <img src="https://ganaconrita.vercel.app/img/24-hours_8097703.png" alt="Disponible 24 horas" />
-        <div>
-          <h3>Atención 24/7</h3>
-          <p>todos los días del año.</p>
+        <div class="p-6 bg-gray-700 rounded-2xl shadow">
+          <h3 class="text-xl font-semibold mb-2">Comunidad exclusiva</h3>
+          <p class="text-gray-200">Un espacio pensado para quienes disfrutan de compartir y competir.</p>
         </div>
-      </article>
+        <div class="p-6 bg-gray-700 rounded-2xl shadow">
+          <h3 class="text-xl font-semibold mb-2">Adrenalina asegurada</h3>
+          <p class="text-gray-200">Cada experiencia está diseñada para que vivas emociones intensas.</p>
+        </div>
+      </div>
     </section>
-
-    <footer>
-      Contenido solo para mayores de 18 años.
-    </footer>
   </main>
 
-<script>
-document.addEventListener('DOMContentLoaded', function () {
+  <!-- FORMULARIO (opcional; puede quedar comentado o activo) -->
+  <section id="registro" class="py-16 px-6">
+    <div class="max-w-md mx-auto bg-gray-900/60 p-6 rounded-2xl text-center">
+      <h3 class="text-2xl font-bold mb-4">¿Querés que te contactemos ya?</h3>
+      <p class="text-sm text-gray-300 mb-6">Enviá un mensaje rápido y te respondemos en minutos.</p>
+      <a id="ctaBtnBottom" class="inline-block bg-yellow-400 text-gray-900 px-6 py-3 rounded-xl font-bold shadow-lg" href="#" rel="noopener noreferrer">
+        <span id="ctaTextBottom">Cargando...</span>
+      </a>
+    </div>
+  </section>
 
-   const NUMBERS = [
-  //  "5491130683429", // WP1
-  //  "5491166659973", // WP2
-   // "5491163519497", // WP3 Caido
-   // "5491122481343", // WP4
-   // "5491157042886", // WP5
-  //  "5491131451455", // WP6
-  //  "5491130681094", // WP7 Caido
-   // "5491153352136", // WP8
-   // "5491170667424", // WP9
-  //  "5491130697654", // WP10
-      "5491124077098" // WP11
-  ];
+  <!-- FOOTER -->
+  <footer class="py-6 text-center text-sm text-gray-500">
+    © 2025 Experiencia Online · Todos los derechos reservados
+  </footer>
 
+  <!-- SCRIPT: texto dinámico + actualización del link a WhatsApp -->
+  <script>
+    (function () {
+      // --- CONFIG: reemplazá por tu número (ej: 5491123456789) sin "+" ni "-"
+      const WA_NUMBER = '549XXXXXXXXXX';
 
-  const BASE_MESSAGE = 'Hola, quiero crear mi usuario. Mi nombre es:';
-  const inputName = document.getElementById('userName');
-  const ctaBtn = document.getElementById('cta-whatsapp');
+      // Array de frases (mezcla de estilos: acción, misterio, exclusividad, conversacional)
+      const phrases = [
+        "Hablá con nosotros en WhatsApp 📲",
+        "Entrar ahora 🚀",
+        "Unirme a la experiencia 🔑",
+        "Quiero descubrirlo 👀",
+        "Mostrame de qué se trata 🔥",
+        "Acceso inmediato ⚡",
+        "Obtener mi pase exclusivo 🎟️",
+        "Soy parte, dejame entrar 🙌",
+        "Acceso VIP ahora 🚀",
+        "Sí, quiero sumarme 😉",
+        "Listo, hablame al WhatsApp 📲",
+        "Dame mi acceso rápido ⚡"
+      ];
 
-  const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+      // Elementos DOM
+      const ctaTextEl = document.getElementById('ctaText');
+      const ctaBtnEl = document.getElementById('ctaBtn');
+      const ctaTextBottomEl = document.getElementById('ctaTextBottom');
+      const ctaBtnBottomEl = document.getElementById('ctaBtnBottom');
 
-  inputName.placeholder = isMobile ? 'Escribe tu nombre para WhatsApp' : 'Escribe tu nombre para WhatsApp Web';
+      // Escoge un índice aleatorio al cargar
+      let currentIndex = Math.floor(Math.random() * phrases.length);
 
-  ctaBtn.addEventListener('click', function (e) {
-    const name = inputName.value.trim();
-    if (!name) {
-      alert('Por favor escribe tu nombre antes de continuar.');
-      e.preventDefault();
-      return;
-    }
+      // Construye el mensaje que se va a prellenar en WhatsApp
+      function buildWhatsAppHref(phrase) {
+        const base = 'https://wa.me/' + WA_NUMBER;
+        // Mensaje: incluye la frase del botón para que la conversación sea coherente
+        const message = `¡Hola! Quiero sumarme a la experiencia. (${phrase})`;
+        return base + '?text=' + encodeURIComponent(message);
+      }
 
-    const randomPhone = NUMBERS[Math.floor(Math.random() * NUMBERS.length)];
+      // Actualiza el texto y los links de los CTA
+      function updateCTAs(index) {
+        const phrase = phrases[index];
+        // Fade animation (simple)
+        fadeText(ctaTextEl, phrase);
+        fadeText(ctaTextBottomEl, phrase);
 
-    // Enviar datos al Apps Script
-    fetch("https://script.google.com/macros/s/AKfycbylLPPPHBv8R1C7BYbOaN2nH3mf1DgvATrVAay3OhETx-BZIMH-Wuu1ztlpcjE-gTRY_A/exec", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        numero: randomPhone,
-        nombre: name,
-        dispositivo: isMobile ? "Móvil" : "Desktop"
-      })
-    }).catch(err => console.error("Error enviando a Google Sheet:", err));
+        // Actualiza hrefs
+        const waHref = buildWhatsAppHref(phrase);
+        ctaBtnEl.setAttribute('href', waHref);
+        ctaBtnBottomEl.setAttribute('href', waHref);
 
-    // Crear link de WhatsApp
-    const link = isMobile
-      ? `https://wa.me/${randomPhone}?text=${encodeURIComponent(BASE_MESSAGE + ' ' + name)}`
-      : `https://web.whatsapp.com/send?phone=${randomPhone}&text=${encodeURIComponent(BASE_MESSAGE + ' ' + name)}`;
+        // Accesibilidad: aria-label con mismo texto
+        ctaBtnEl.setAttribute('aria-label', phrase + ' — Ir a WhatsApp');
+        ctaBtnBottomEl.setAttribute('aria-label', phrase + ' — Ir a WhatsApp');
+      }
 
-    if (isMobile) {
-      this.href = link;
-    } else {
-      e.preventDefault();
-      window.open(link, '_blank', 'noopener,noreferrer');
-    }
+      // Efecto de fade simple (reemplaza texto con transición)
+      function fadeText(el, newText) {
+        if (!el) return;
+        el.classList.add('opacity-0', 'transition', 'duration-200');
+        setTimeout(() => {
+          el.textContent = newText;
+          el.classList.remove('opacity-0');
+        }, 200);
+      }
 
-    // 📊 Evento en GA4
-    gtag('event', 'inicio_conversacion', {
-      'event_category': 'WhatsApp',
-      'event_label': randomPhone,
-      'value': name
-    });
+      // Inicializa CTAs
+      updateCTAs(currentIndex);
 
-    // Tracking Pixel Meta (solo contacto)
-    if (typeof fbq === 'function') {
-      fbq('track', 'Contact');
-      fbq('trackCustom', 'InicioConversacion');
-    }
+      // Opcional: rota la frase cada 4 segundos
+      const ROTATE_INTERVAL_MS = 4000;
+      setInterval(() => {
+        currentIndex = (currentIndex + 1) % phrases.length;
+        updateCTAs(currentIndex);
+      }, ROTATE_INTERVAL_MS);
 
-  });
-
-});
-</script>
+      // Prevent bad config: aviso en consola si no reemplazaste el número
+      if (WA_NUMBER.includes('X')) {
+        console.warn('⚠️ ATENCIÓN: Reemplazá WA_NUMBER en el script por tu número real (ej: 5491123456789).');
+      }
+    })();
+  </script>
 </body>
 </html>
