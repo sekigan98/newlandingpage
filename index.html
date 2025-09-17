@@ -161,6 +161,19 @@ src="https://www.facebook.com/tr?id=669988209455879&ev=PageView&noscript=1"
         ctaBtnBottomEl.setAttribute('aria-label', phrase + ' — Ir a WhatsApp');
       }
 
+  // Usamos el "onclick" para disparar el evento del píxel
+      if (ctaBtnEl) {
+          ctaBtnEl.onclick = function() {
+              fbq('track', 'Contact'); // Evento estándar de Meta para 'contacto'
+          };
+      }
+      if (ctaBtnBottomEl) {
+          ctaBtnBottomEl.onclick = function() {
+              fbq('track', 'Contact'); // Dispara el mismo evento para el botón de abajo
+          };
+      }
+
+
       // Efecto de fade simple (reemplaza texto con transición)
       function fadeText(el, newText) {
         if (!el) return;
