@@ -3,27 +3,26 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-<!-- Meta Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '669988209455879');
-fbq('track', 'PageView');
-</script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=669988209455879&ev=PageView&noscript=1"
-/></noscript>
-<!-- End Meta Pixel Code -->
+  <!-- Meta Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '669988209455879');
+  fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=669988209455879&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel Code -->
   <title>Experiencia Online — Landing</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    /* Pequeña animación para el cambio de texto */
     .fade-enter { opacity: 0; transform: translateY(6px); }
     .fade-enter-active { opacity: 1; transform: translateY(0); transition: all 300ms ease; }
     .fade-exit { opacity: 1; transform: translateY(0); }
@@ -51,11 +50,9 @@ src="https://www.facebook.com/tr?id=669988209455879&ev=PageView&noscript=1"
            class="inline-block bg-yellow-400 text-gray-900 px-6 py-3 rounded-2xl font-bold shadow-lg hover:scale-105 transition transform"
            rel="noopener noreferrer"
         >
-          <!-- Texto dinámico -->
           <span id="ctaText">Cargando...</span>
         </a>
 
-        <!-- CTA secundaria (opcional) -->
         <a id="ctaSmall"
            href="#registro"
            class="inline-block border border-gray-600 px-5 py-3 rounded-2xl text-sm text-gray-200 hover:bg-gray-800 transition"
@@ -89,7 +86,7 @@ src="https://www.facebook.com/tr?id=669988209455879&ev=PageView&noscript=1"
     </section>
   </main>
 
-  <!-- FORMULARIO (opcional; puede quedar comentado o activo) -->
+  <!-- FORMULARIO -->
   <section id="registro" class="py-16 px-6">
     <div class="max-w-md mx-auto bg-gray-900/60 p-6 rounded-2xl text-center">
       <h3 class="text-2xl font-bold mb-4">¿Querés que te contactemos ya?</h3>
@@ -105,13 +102,10 @@ src="https://www.facebook.com/tr?id=669988209455879&ev=PageView&noscript=1"
     © 2025 Experiencia Online · Todos los derechos reservados
   </footer>
 
-  <!-- SCRIPT: texto dinámico + actualización del link a WhatsApp -->
+  <!-- SCRIPT: CTA dinámico + Pixel event -->
   <script>
     (function () {
-      // --- CONFIG: reemplazá por tu número (ej: 5491123456789) sin "+" ni "-"
       const WA_NUMBER = '5491131752354';
-
-      // Array de frases (mezcla de estilos: acción, misterio, exclusividad, conversacional)
       const phrases = [
         "Hablá con nosotros en WhatsApp 📲",
         "Entrar ahora 🚀",
@@ -127,54 +121,31 @@ src="https://www.facebook.com/tr?id=669988209455879&ev=PageView&noscript=1"
         "Dame mi acceso rápido ⚡"
       ];
 
-      // Elementos DOM
       const ctaTextEl = document.getElementById('ctaText');
       const ctaBtnEl = document.getElementById('ctaBtn');
       const ctaTextBottomEl = document.getElementById('ctaTextBottom');
       const ctaBtnBottomEl = document.getElementById('ctaBtnBottom');
-
-      // Escoge un índice aleatorio al cargar
       let currentIndex = Math.floor(Math.random() * phrases.length);
 
-      // Construye el mensaje que se va a prellenar en WhatsApp
       function buildWhatsAppHref(phrase) {
         const base = 'https://wa.me/' + WA_NUMBER;
-        // Mensaje: incluye la frase del botón para que la conversación sea coherente
         const message = `¡Hola! Quiero sumarme a la experiencia. (${phrase})`;
         return base + '?text=' + encodeURIComponent(message);
       }
 
-      // Actualiza el texto y los links de los CTA
       function updateCTAs(index) {
         const phrase = phrases[index];
-        // Fade animation (simple)
         fadeText(ctaTextEl, phrase);
         fadeText(ctaTextBottomEl, phrase);
 
-        // Actualiza hrefs
         const waHref = buildWhatsAppHref(phrase);
-        ctaBtnEl.setAttribute('href', waHref);
-        ctaBtnBottomEl.setAttribute('href', waHref);
+        ctaBtnEl.setAttribute('data-href', waHref);
+        ctaBtnBottomEl.setAttribute('data-href', waHref);
 
-        // Accesibilidad: aria-label con mismo texto
         ctaBtnEl.setAttribute('aria-label', phrase + ' — Ir a WhatsApp');
         ctaBtnBottomEl.setAttribute('aria-label', phrase + ' — Ir a WhatsApp');
       }
 
-  // Usamos el "onclick" para disparar el evento del píxel
-      if (ctaBtnEl) {
-          ctaBtnEl.onclick = function() {
-              fbq('track', 'Contact'); // Evento estándar de Meta para 'contacto'
-          };
-      }
-      if (ctaBtnBottomEl) {
-          ctaBtnBottomEl.onclick = function() {
-              fbq('track', 'Contact'); // Dispara el mismo evento para el botón de abajo
-          };
-      }
-
-
-      // Efecto de fade simple (reemplaza texto con transición)
       function fadeText(el, newText) {
         if (!el) return;
         el.classList.add('opacity-0', 'transition', 'duration-200');
@@ -184,20 +155,28 @@ src="https://www.facebook.com/tr?id=669988209455879&ev=PageView&noscript=1"
         }, 200);
       }
 
-      // Inicializa CTAs
-      updateCTAs(currentIndex);
+      // Handler seguro: dispara fbq y abre WhatsApp en nueva pestaña
+      function attachSafeClick(buttonEl) {
+        if (!buttonEl) return;
+        buttonEl.addEventListener('click', function(e){
+          e.preventDefault();
+          try { fbq('track', 'Lead'); } catch(err){ console.warn('fbq error', err); }
+          const href = this.getAttribute('data-href');
+          if(href && href !== '#') {
+            window.open(href, '_blank', 'noopener,noreferrer');
+          }
+        }, {passive: false});
+      }
 
-      // Opcional: rota la frase cada 4 segundos
-      const ROTATE_INTERVAL_MS = 4000;
+      // Inicializar
+      updateCTAs(currentIndex);
       setInterval(() => {
         currentIndex = (currentIndex + 1) % phrases.length;
         updateCTAs(currentIndex);
-      }, ROTATE_INTERVAL_MS);
+      }, 4000);
 
-      // Prevent bad config: aviso en consola si no reemplazaste el número
-      if (WA_NUMBER.includes('X')) {
-        console.warn('⚠️ ATENCIÓN: Reemplazá WA_NUMBER en el script por tu número real (ej: 5491123456789).');
-      }
+      attachSafeClick(ctaBtnEl);
+      attachSafeClick(ctaBtnBottomEl);
     })();
   </script>
 </body>
