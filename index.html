@@ -116,81 +116,74 @@ src="https://www.facebook.com/tr?id=784667747614644&ev=PageView&noscript=1"
   <script>
     (function () {
       const WA_NUMBER = '541165735070';
-      const phrases = [
-        "Hablá con nosotros en WhatsApp 📲",
-        "Entrar ahora 🚀",
-        "Unirme a la experiencia 🔑",
-        "Quiero descubrirlo 👀",
-        "Mostrame de qué se trata 🔥",
-        "Acceso inmediato ⚡",
-        "Obtener mi pase exclusivo 🎟️",
-        "Soy parte, dejame entrar 🙌",
-        "Acceso VIP ahora 🚀",
-        "Sí, quiero sumarme 😉",
-        "Listo, hablame al WhatsApp 📲",
-        "Dame mi acceso rápido ⚡"
-      ];
+   const phrases = [
+    "Hablá con nosotros en WhatsApp 📲",
+    "Entrar ya 🚀",
+    "Unirme ahora 🔑",
+    "Quiero ser parte 👀",
+    "Mostrame la propuesta 🔥",
+    "Acceso directo ⚡",
+    "Obtener mi pase 🎟️",
+    "Dejame entrar 🙌",
+    "Acceso especial 🚀",
+    "Sí, quiero sumarme 😉",
+    "Listo, hablame al WhatsApp 📲",
+    "Acceso rápido ⚡"
+  ];
 
-      const ctaTextEl = document.getElementById('ctaText');
-      const ctaBtnEl = document.getElementById('ctaBtn');
-      const ctaTextBottomEl = document.getElementById('ctaTextBottom');
-      const ctaBtnBottomEl = document.getElementById('ctaBtnBottom');
-      let currentIndex = Math.floor(Math.random() * phrases.length);
+  const ctaTextEl = document.getElementById('ctaText');
+  const ctaBtnEl = document.getElementById('ctaBtn');
+  const ctaTextBottomEl = document.getElementById('ctaTextBottom');
+  const ctaBtnBottomEl = document.getElementById('ctaBtnBottom');
+  let currentIndex = Math.floor(Math.random() * phrases.length);
 
-      function buildWhatsAppHref(phrase) {
-        const base = 'https://wa.me/' + WA_NUMBER;
-        const message = `¡Hola! Quiero sumarme a la experiencia. (${phrase})`;
-        return base + '?text=' + encodeURIComponent(message);
-      }
+  function buildWhatsAppHref(phrase) {
+    const base = 'https://wa.me/' + WA_NUMBER;
+    const message = `¡Hola! Quiero sumarme a la conexión. (${phrase})`;
+    return base + '?text=' + encodeURIComponent(message);
+  }
 
-      function updateCTAs(index) {
-        const phrase = phrases[index];
-        fadeText(ctaTextEl, phrase);
-        fadeText(ctaTextBottomEl, phrase);
+  function updateCTAs(index) {
+    const phrase = phrases[index];
+    fadeText(ctaTextEl, phrase);
+    fadeText(ctaTextBottomEl, phrase);
 
-        const waHref = buildWhatsAppHref(phrase);
-        ctaBtnEl.setAttribute('data-href', waHref);
-        ctaBtnBottomEl.setAttribute('data-href', waHref);
+    const waHref = buildWhatsAppHref(phrase);
+    ctaBtnEl.setAttribute('href', waHref);
+    ctaBtnBottomEl.setAttribute('href', waHref);
 
-        ctaBtnEl.setAttribute('aria-label', phrase + ' — Ir a WhatsApp');
-        ctaBtnBottomEl.setAttribute('aria-label', phrase + ' — Ir a WhatsApp');
-      }
+    ctaBtnEl.setAttribute('aria-label', phrase + ' — Ir a WhatsApp');
+    ctaBtnBottomEl.setAttribute('aria-label', phrase + ' — Ir a WhatsApp');
+  }
 
-      function fadeText(el, newText) {
-        if (!el) return;
-        el.classList.add('opacity-0', 'transition', 'duration-200');
-        setTimeout(() => {
-          el.textContent = newText;
-          el.classList.remove('opacity-0');
-        }, 200);
-      }
+  function fadeText(el, newText) {
+    if (!el) return;
+    el.classList.add('fade-out');
+    setTimeout(() => {
+      el.textContent = newText;
+      el.classList.remove('fade-out');
+      el.classList.add('fade-in');
+      setTimeout(() => el.classList.remove('fade-in'), 300);
+    }, 200);
+  }
 
-      // Handler seguro: dispara fbq y abre WhatsApp en nueva pestaña
- function attachSafeClick(buttonEl) {
-  if (!buttonEl) return;
-  buttonEl.addEventListener('click', function(e){
-    e.preventDefault();
-    const href = this.getAttribute('data-href');
-    if (href && href !== '#') {
-      // Esperamos un momento a que se abra WhatsApp antes de enviar el evento
-      setTimeout(() => {
-        try { fbq('track', 'Lead'); } catch(err){ console.warn('fbq error', err); }
-        try { gtag('event', 'lead_whatsapp_rondeau'); } catch(err){ console.warn('gtag error', err); }
-      }, 800);
-      window.location.href = href;
-    }
-  }, {passive: false});
-}
-      // Inicializar
-      updateCTAs(currentIndex);
-      setInterval(() => {
-        currentIndex = (currentIndex + 1) % phrases.length;
-        updateCTAs(currentIndex);
-      }, 4000);
+  function attachClickTracking(buttonEl) {
+    if (!buttonEl) return;
+    buttonEl.addEventListener('click', function(){
+      try { fbq('track', 'Lead'); } catch(err){ console.warn('fbq error', err); }
+      try { gtag('event', 'lead_whatsapp_300'); } catch(err){ console.warn('gtag error', err); }
+    });
+  }
 
-      attachSafeClick(ctaBtnEl);
-      attachSafeClick(ctaBtnBottomEl);
-    })();
-  </script>
+  updateCTAs(currentIndex);
+  setInterval(() => {
+    currentIndex = (currentIndex + 1) % phrases.length;
+    updateCTAs(currentIndex);
+  }, 4000);
+
+  attachClickTracking(ctaBtnEl);
+  attachClickTracking(ctaBtnBottomEl);
+})();
+</script>
 </body>
 </html>
