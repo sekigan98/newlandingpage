@@ -166,19 +166,21 @@ src="https://www.facebook.com/tr?id=784667747614644&ev=PageView&noscript=1"
       }
 
       // Handler seguro: dispara fbq y abre WhatsApp en nueva pestaña
-      function attachSafeClick(buttonEl) {
-        if (!buttonEl) return;
-        buttonEl.addEventListener('click', function(e){
-          e.preventDefault();
-          try { fbq('track', 'Lead'); } catch(err){ console.warn('fbq error', err); }
-          try { gtag('event', 'lead_whatsapp_rondeau'); } catch(err){ console.warn('gtag error', err); }
-          const href = this.getAttribute('data-href');
-         if(href && href !== '#') { 
-          window.location.href = href; 
-          }
-        }, {passive: false});
-      }
-
+ function attachSafeClick(buttonEl) {
+  if (!buttonEl) return;
+  buttonEl.addEventListener('click', function(e){
+    e.preventDefault();
+    const href = this.getAttribute('data-href');
+    if (href && href !== '#') {
+      // Esperamos un momento a que se abra WhatsApp antes de enviar el evento
+      setTimeout(() => {
+        try { fbq('track', 'Lead'); } catch(err){ console.warn('fbq error', err); }
+        try { gtag('event', 'lead_whatsapp_rondeau'); } catch(err){ console.warn('gtag error', err); }
+      }, 800);
+      window.location.href = href;
+    }
+  }, {passive: false});
+}
       // Inicializar
       updateCTAs(currentIndex);
       setInterval(() => {
