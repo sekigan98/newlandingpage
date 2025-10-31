@@ -15,7 +15,7 @@ import {
 const firebaseConfig = {
   apiKey: "AIzaSyB5yNYklLtbjAKEsL7liuHK-o1tasFt7I8",
   authDomain: "landing-4cdb4.firebaseapp.com",
-  databaseURL: "landing-4cdb4",
+  databaseURL: "https://landing-4cdb4-default-rtdb.firebaseio.com",
   projectId: "TU_PROJECT_ID",
   storageBucket: "landing-4cdb4.firebasestorage.app",
   messagingSenderId: "791156963903",
