@@ -6,27 +6,25 @@ const sendBtn = document.getElementById("send-btn");
 
 if (!chatBox || !chatInput || !sendBtn) {
   console.warn("Chat elements not found in DOM");
-  return;
-}
+} else {
+  const chatRef = firebase.ref(firebase.db, "messages");
 
-const chatRef = ref(db, "messages");
+  sendBtn.addEventListener("click", () => {
+    const text = chatInput.value.trim();
+    if (text) {
+      firebase.push(chatRef, {
+        text,
+        timestamp: Date.now()
+      });
+      chatInput.value = "";
+    }
+  });
 
-sendBtn.addEventListener("click", () => {
-  const text = chatInput.value.trim();
-  if (text) {
-    push(chatRef, {
-      text,
-      timestamp: Date.now()
-    });
-    chatInput.value = "";
-  }
-});
-
-onChildAdded(chatRef, (snapshot) => {
-  const msg = snapshot.val();
-  const msgDiv = document.createElement("div");
-  msgDiv.className = "chat-message";
-  msgDiv.textContent = msg.text;
-  chatBox.appendChild(msgDiv);
-  chatBox.scrollTop = chatBox.scrollHeight;
-});
+  firebase.onChildAdded(chatRef, (snapshot) => {
+    const msg = snapshot.val();
+    const msgDiv = document.createElement("div");
+    msgDiv.className = "chat-message";
+    msgDiv.textContent = msg.text;
+    chatBox.appendChild(msgDiv);
+    chatBox.scrollTop = chatBox.scrollHeight;
+  });
