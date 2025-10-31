@@ -7,6 +7,7 @@ function initChat() {
   const toggleBtn = document.getElementById("chat-toggle");
   const chatContainer = document.getElementById("chat-container");
 
+  // 💬 Mostrar/ocultar chat
   if (toggleBtn && chatContainer) {
     toggleBtn.addEventListener("click", () => {
       chatContainer.classList.toggle("hidden");
@@ -14,6 +15,7 @@ function initChat() {
     });
   }
 
+  // ⚠️ Verificación de elementos
   if (!chatBox || !chatInput || !sendBtn) {
     console.warn("Chat elements not found in DOM");
     return;
@@ -21,10 +23,12 @@ function initChat() {
 
   const chatRef = firebase.ref(firebase.db, "messages");
 
+  // 📤 Enviar mensaje como usuario
   sendBtn.addEventListener("click", () => {
     const text = chatInput.value.trim();
     if (text) {
       firebase.push(chatRef, {
+        user: "Usuario",
         text,
         timestamp: Date.now()
       });
@@ -32,11 +36,16 @@ function initChat() {
     }
   });
 
+  // 💬 Mostrar mensajes en burbujas
   firebase.onChildAdded(chatRef, (snapshot) => {
     const msg = snapshot.val();
     const msgDiv = document.createElement("div");
-    msgDiv.className = "chat-message";
 
+    // 🟢 Estilo según origen
+    const sender = msg.user === "Admin" ? "admin" : "user";
+    msgDiv.className = `chat-message ${sender}`;
+
+    // 🕒 Timestamp legible
     const time = new Date(msg.timestamp).toLocaleTimeString("es-AR", {
       hour: "2-digit",
       minute: "2-digit"
