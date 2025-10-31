@@ -1,4 +1,4 @@
-import { db, ref, push, onChildAdded } from "./firebase.js";
+import * as firebase from "./firebase.js";
 
 const chatBox = document.getElementById("chat-box");
 const chatInput = document.getElementById("chat-input");
