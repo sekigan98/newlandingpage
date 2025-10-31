@@ -1,28 +1,21 @@
+import * as firebase from "./firebase.js";
+
 function initChat() {
   const chatBox = document.getElementById("chat-box");
   const chatInput = document.getElementById("chat-input");
   const sendBtn = document.getElementById("send-btn");
-  const toggleBtn = document.getElementById("chat-toggle");
-  const chatContainer = document.getElementById("chat-container");
 
-  if (!chatBox || !chatInput || !sendBtn || !toggleBtn || !chatContainer) {
+  if (!chatBox || !chatInput || !sendBtn) {
     console.warn("Chat elements not found in DOM");
-    return; // ✅ ahora está dentro de una función
+    return;
   }
 
-  // Toggle de visibilidad
-  toggleBtn.addEventListener("click", () => {
-    chatContainer.classList.toggle("hidden");
-  });
+  const chatRef = firebase.ref(firebase.db, "messages");
 
-  // Firebase: referencia al chat
-  const chatRef = ref(db, "messages");
-
-  // Enviar mensaje
   sendBtn.addEventListener("click", () => {
     const text = chatInput.value.trim();
     if (text) {
-      push(chatRef, {
+      firebase.push(chatRef, {
         text,
         timestamp: Date.now()
       });
@@ -30,8 +23,7 @@ function initChat() {
     }
   });
 
-  // Mostrar mensajes en tiempo real
-  onChildAdded(chatRef, (snapshot) => {
+  firebase.onChildAdded(chatRef, (snapshot) => {
     const msg = snapshot.val();
     const msgDiv = document.createElement("div");
     msgDiv.className = "chat-message";
@@ -41,5 +33,4 @@ function initChat() {
   });
 }
 
-// ✅ Ejecutar la función
-initChat();
+document.addEventListener("DOMContentLoaded", initChat);
