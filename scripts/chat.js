@@ -4,6 +4,15 @@ function initChat() {
   const chatBox = document.getElementById("chat-box");
   const chatInput = document.getElementById("chat-input");
   const sendBtn = document.getElementById("send-btn");
+  const toggleBtn = document.getElementById("chat-toggle");
+  const chatContainer = document.getElementById("chat-container");
+
+  if (toggleBtn && chatContainer) {
+    toggleBtn.addEventListener("click", () => {
+      chatContainer.classList.toggle("hidden");
+      toggleBtn.textContent = chatContainer.classList.contains("hidden") ? "💬" : "❌";
+    });
+  }
 
   if (!chatBox || !chatInput || !sendBtn) {
     console.warn("Chat elements not found in DOM");
@@ -27,7 +36,13 @@ function initChat() {
     const msg = snapshot.val();
     const msgDiv = document.createElement("div");
     msgDiv.className = "chat-message";
-    msgDiv.textContent = msg.text;
+
+    const time = new Date(msg.timestamp).toLocaleTimeString("es-AR", {
+      hour: "2-digit",
+      minute: "2-digit"
+    });
+
+    msgDiv.textContent = `[${time}] ${msg.text}`;
     chatBox.appendChild(msgDiv);
     chatBox.scrollTop = chatBox.scrollHeight;
   });
