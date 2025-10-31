@@ -116,3 +116,16 @@
   cursor: pointer;
   font-weight: bold;
   transition: background 0.3s
+
+  /* Ocultar con animación funcional */
+.chat-container-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: scale(0.95);
+  transition: all 0.3s ease;
+}
+
+#chat-container {
+  transition: all 0.3s ease;
+}
