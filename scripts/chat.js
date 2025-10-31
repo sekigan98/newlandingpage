@@ -1,5 +1,8 @@
 import { db, ref, push, onChildAdded } from "./firebase.js";
-
+if (!chatBox || !chatInput || !sendBtn) {
+  console.warn("Chat elements not found in DOM");
+  return;
+}
 const chatRef = ref(db, "messages");
 const chatBox = document.getElementById("chat-box");
 const chatInput = document.getElementById("chat-input");
