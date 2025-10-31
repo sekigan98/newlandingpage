@@ -16,8 +16,8 @@ const firebaseConfig = {
   apiKey: "AIzaSyB5yNYklLtbjAKEsL7liuHK-o1tasFt7I8",
   authDomain: "landing-4cdb4.firebaseapp.com",
   databaseURL: "https://landing-4cdb4-default-rtdb.firebaseio.com",
-  projectId: "TU_PROJECT_ID",
-  storageBucket: "landing-4cdb4.firebasestorage.app",
+  projectId: "landing-4cdb4",
+  storageBucket: "landing-4cdb4.appspot.com",
   messagingSenderId: "791156963903",
   appId: "1:791156963903:web:3a7981a2ba1ad633c7968a"
 };
