@@ -9,10 +9,10 @@ function initChat() {
 
   // 💬 Mostrar/ocultar chat con animación
   if (toggleBtn && chatContainer) {
-    toggleBtn.addEventListener("click", () => {
-      const isHidden = chatContainer.classList.toggle("chat-container-hidden");
-      toggleBtn.textContent = isHidden ? "💬" : "❌";
-    });
+toggleBtn.addEventListener("click", () => {
+  const isNowHidden = chatContainer.classList.toggle("chat-container-hidden");
+  toggleBtn.textContent = isNowHidden ? "💬" : "❌";
+});
   }
 
   // ⚠️ Verificación de elementos
