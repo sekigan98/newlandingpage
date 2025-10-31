@@ -1,56 +1,29 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-  <title>Panel de Empleados</title>
-  <script type="module" src="./scripts/firebase.js"></script>
-  <script type="module">
-    import {
-      auth,
-      signInWithEmailAndPassword,
-      onAuthStateChanged,
-      db,
-      ref,
-      onChildAdded
-    } from "./scripts/firebase.js";
-
-    const loginForm = document.getElementById("login-form");
-    const chatPanel = document.getElementById("chat-panel");
-    const chatList = document.getElementById("chat-list");
-
-    loginForm.addEventListener("submit", (e) => {
-      e.preventDefault();
-      const email = loginForm.email.value;
-      const password = loginForm.password.value;
-      signInWithEmailAndPassword(auth, email, password)
-        .then(() => {
-          loginForm.style.display = "none";
-          chatPanel.style.display = "block";
-        })
-        .catch((err) => alert("Error: " + err.message));
-    });
-
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        const chatRef = ref(db, "messages");
-        onChildAdded(chatRef, (snapshot) => {
-          const msg = snapshot.val();
-          const item = document.createElement("li");
-          item.textContent = msg.text;
-          chatList.appendChild(item);
-        });
-      }
-    });
-  </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Panel de Respuesta</title>
+  <link rel="stylesheet" href="./styles/admin.css" />
 </head>
 <body>
-  <h2>Panel de Empleados</h2>
-  <form id="login-form">
-    <input type="email" name="email" placeholder="Email" required />
-    <input type="password" name="password" placeholder="Contraseña" required />
-    <button type="submit">Ingresar</button>
-  </form>
-  <div id="chat-panel" style="display:none;">
-    <ul id="chat-list"></ul>
+  <div id="login-container">
+    <h2>Iniciar sesión</h2>
+    <input type="email" id="email" placeholder="Correo" />
+    <input type="password" id="password" placeholder="Contraseña" />
+    <button id="login-btn">Entrar</button>
+    <p id="login-error" class="error"></p>
   </div>
+
+  <div id="chat-panel" class="hidden">
+    <div id="chat-header">Panel de Respuesta</div>
+    <div id="chat-box"></div>
+    <div class="chat-input-row">
+      <input type="text" id="chat-input" placeholder="Escribí tu respuesta..." />
+      <button id="send-btn">Enviar</button>
+    </div>
+  </div>
+
+  <script type="module" src="./scripts/admin.js"></script>
 </body>
 </html>
