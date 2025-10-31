@@ -13,13 +13,13 @@ import {
 
 // Reemplazá con tu configuración real
 const firebaseConfig = {
-  apiKey: "TU_API_KEY",
-  authDomain: "TU_AUTH_DOMAIN",
-  databaseURL: "TU_DATABASE_URL",
-  projectId: "TU_PROJECT_ID",
-  storageBucket: "TU_STORAGE_BUCKET",
-  messagingSenderId: "TU_MESSAGING_SENDER_ID",
-  appId: "TU_APP_ID"
+  apiKey: "AIzaSyB5yNYklLtbjAKEsL7liuHK-o1tasFt7I8",
+  authDomain: "landing-4cdb4.firebaseapp.com",
+  databaseURL: "https://landing-4cdb4-default-rtdb.firebaseio.com",
+  projectId: "landing-4cdb4",
+  storageBucket: "landing-4cdb4.appspot.com",
+  messagingSenderId: "791156963903",
+  appId: "1:791156963903:web:3a7981a2ba1ad633c7968a"
 };
 
 const app = initializeApp(firebaseConfig);
