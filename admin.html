@@ -10,12 +10,19 @@
       onAuthStateChanged,
       db,
       ref,
-      onChildAdded
+      onValue,
+      onChildAdded,
+      push
     } from "./scripts/firebase.js";
 
     const loginForm = document.getElementById("login-form");
     const chatPanel = document.getElementById("chat-panel");
+    const sessionList = document.getElementById("session-list");
     const chatList = document.getElementById("chat-list");
+    const responseForm = document.getElementById("response-form");
+    const responseInput = document.getElementById("response-input");
+
+    let currentSessionRef = null;
 
     loginForm.addEventListener("submit", (e) => {
       e.preventDefault();
@@ -31,13 +38,41 @@
 
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        const chatRef = ref(db, "messages");
-        onChildAdded(chatRef, (snapshot) => {
-          const msg = snapshot.val();
-          const item = document.createElement("li");
-          item.textContent = msg.text;
-          chatList.appendChild(item);
+        const sessionsRef = ref(db, "sessions");
+        onValue(sessionsRef, (snapshot) => {
+          const sessions = snapshot.val();
+          sessionList.innerHTML = "";
+          chatList.innerHTML = "";
+
+          Object.keys(sessions).forEach((sessionId) => {
+            const btn = document.createElement("button");
+            btn.textContent = sessionId;
+            btn.addEventListener("click", () => {
+              chatList.innerHTML = "";
+              currentSessionRef = ref(db, `sessions/${sessionId}`);
+              onChildAdded(currentSessionRef, (snap) => {
+                const msg = snap.val();
+                const item = document.createElement("li");
+                item.textContent = `[${msg.user || "Usuario"}] ${msg.text}`;
+                chatList.appendChild(item);
+              });
+            });
+            sessionList.appendChild(btn);
+          });
         });
+      }
+    });
+
+    responseForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const text = responseInput.value.trim();
+      if (text && currentSessionRef) {
+        push(currentSessionRef, {
+          user: "Admin",
+          text,
+          timestamp: Date.now()
+        });
+        responseInput.value = "";
       }
     });
   </script>
@@ -49,8 +84,15 @@
     <input type="password" name="password" placeholder="Contraseña" required />
     <button type="submit">Ingresar</button>
   </form>
+
   <div id="chat-panel" style="display:none;">
+    <h3>Sesiones activas</h3>
+    <div id="session-list"></div>
     <ul id="chat-list"></ul>
+    <form id="response-form">
+      <input type="text" id="response-input" placeholder="Responder..." required />
+      <button type="submit">Enviar</button>
+    </form>
   </div>
 </body>
 </html>
