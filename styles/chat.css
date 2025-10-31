@@ -3,7 +3,7 @@
   position: fixed;
   bottom: 20px;
   right: 20px;
-  background: #10b981;
+  background: linear-gradient(135deg, #10b981, #059669);
   color: white;
   font-size: 24px;
   padding: 12px;
@@ -11,6 +11,11 @@
   cursor: pointer;
   z-index: 1000;
   box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  transition: transform 0.3s ease;
+}
+
+.chat-toggle:hover {
+  transform: scale(1.1);
 }
 
 /* Contenedor del chat */
@@ -27,6 +32,16 @@
   z-index: 999;
   display: flex;
   flex-direction: column;
+  opacity: 1;
+  transform: scale(1);
+  transition: all 0.3s ease;
+}
+
+/* Ocultar con animación */
+.chat-container-hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.95);
 }
 
 /* Área de mensajes */
@@ -100,9 +115,4 @@
   border-radius: 8px;
   cursor: pointer;
   font-weight: bold;
-  transition: background 0.3s ease;
-}
-
-#send-btn:hover {
-  background: #059669;
-}
+  transition: background 0.3s
