@@ -115,21 +115,21 @@ src="https://www.facebook.com/tr?id=1702666213730800&ev=PageView&noscript=1"
   </footer>
 
   <!-- SCRIPT: CTA dinámico + Pixel event -->
-  <script>
-    (function () {
-      const WA_NUMBER = '541150233180';
-const phrases = [
-  "Quiero mi usuario gratis 🎯",
-  "Activá mi cuenta ahora 🔥",
-  "Jugá con bonificación 💸",
-  "Mostrame los juegos 🃏",
-  "Cargar saldo al instante 🙌",
-  "Quiero mi premio en 24hs 🎁",
-  "Acceder a la plataforma segura 🛡️",
-  "Retirar cada 24hs 😄",
-  "Entrar a Bet300 🚀",
-  "Sí, quiero jugar ahora 😉"
-];
+ <script>
+(function () {
+  const WA_NUMBER = '541150233180';
+  const phrases = [
+    "Quiero mi usuario gratis 🎯",
+    "Activá mi cuenta ahora 🔥",
+    "Jugá con bonificación 💸",
+    "Mostrame los juegos 🃏",
+    "Cargar saldo al instante 🙌",
+    "Quiero mi premio en 24hs 🎁",
+    "Acceder a la plataforma segura 🛡️",
+    "Retirar cada 24hs 😄",
+    "Entrar a Bet300 🚀",
+    "Sí, quiero jugar ahora 😉"
+  ];
 
   const ctaTextEl = document.getElementById('ctaText');
   const ctaBtnEl = document.getElementById('ctaBtn');
@@ -139,7 +139,7 @@ const phrases = [
 
   function buildWhatsAppHref(phrase) {
     const base = 'https://wa.me/' + WA_NUMBER;
-    const message = `Hola, quisiera mas informacion acerca de esto. (${phrase})`;
+    const message = `Hola, quisiera más información acerca de esto. (${phrase})`;
     return base + '?text=' + encodeURIComponent(message);
   }
 
@@ -167,28 +167,28 @@ const phrases = [
     }, 200);
   }
 
-function attachClickTracking(buttonEl) {
-  if (!buttonEl) return;
-  buttonEl.addEventListener('click', function(){
-    const eventId = 'lead_cta_' + Date.now(); // Genera un ID único
+  function attachClickTracking(buttonEl) {
+    if (!buttonEl) return;
+    buttonEl.addEventListener('click', function () {
+      const eventId = 'lead_cta_' + Date.now();
 
-    try {
-      fbq('track', 'Lead', {
-        event_id: eventId,
-        value: 0,
-        currency: 'ARS'
-      });
-    } catch(err) {
-      console.warn('fbq error', err);
-    }
+      try {
+        fbq('track', 'Lead', {
+          event_id: eventId,
+          value: 0,
+          currency: 'ARS'
+        });
+      } catch (err) {
+        console.warn('fbq error', err);
+      }
 
-    try {
-      gtag('event', 'lead_whatsapp_300');
-    } catch(err) {
-      console.warn('gtag error', err);
-    }
-  });
-}
+      try {
+        gtag('event', 'lead_whatsapp_300');
+      } catch (err) {
+        console.warn('gtag error', err);
+      }
+    });
+  }
 
   updateCTAs(currentIndex);
   setInterval(() => {
@@ -200,13 +200,17 @@ function attachClickTracking(buttonEl) {
   attachClickTracking(ctaBtnBottomEl);
 })();
 </script>
-<!-- CHAT -->
 <link rel="stylesheet" href="./styles/chat.css" />
-<div id="chat-container">
+<div id="chat-toggle" class="chat-toggle">💬</div>
+
+<div id="chat-container" class="hidden">
   <div id="chat-box"></div>
-  <input type="text" id="chat-input" placeholder="Escribí tu mensaje..." />
-  <button id="send-btn">Enviar</button>
+  <div class="chat-input-row">
+    <input type="text" id="chat-input" placeholder="Escribí tu mensaje..." />
+    <button id="send-btn">Enviar</button>
+  </div>
 </div>
+
 <script type="module" src="./scripts/chat.js"></script>
 </body>
 </html>

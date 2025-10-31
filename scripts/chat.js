@@ -1,12 +1,15 @@
 import * as firebase from "./firebase.js";
 
-const chatBox = document.getElementById("chat-box");
-const chatInput = document.getElementById("chat-input");
-const sendBtn = document.getElementById("send-btn");
+function initChat() {
+  const chatBox = document.getElementById("chat-box");
+  const chatInput = document.getElementById("chat-input");
+  const sendBtn = document.getElementById("send-btn");
 
-if (!chatBox || !chatInput || !sendBtn) {
-  console.warn("Chat elements not found in DOM");
-} else {
+  if (!chatBox || !chatInput || !sendBtn) {
+    console.warn("Chat elements not found in DOM");
+    return;
+  }
+
   const chatRef = firebase.ref(firebase.db, "messages");
 
   sendBtn.addEventListener("click", () => {
@@ -28,3 +31,6 @@ if (!chatBox || !chatInput || !sendBtn) {
     chatBox.appendChild(msgDiv);
     chatBox.scrollTop = chatBox.scrollHeight;
   });
+}
+
+document.addEventListener("DOMContentLoaded", initChat);
