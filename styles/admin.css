@@ -1,0 +1,26 @@
+#chat-box {
+  height: 400px;
+  overflow-y: auto;
+  padding: 12px;
+  background: #e5ddd5;
+}
+
+.message {
+  max-width: 70%;
+  padding: 10px;
+  margin: 8px 0;
+  border-radius: 8px;
+  font-size: 14px;
+  position: relative;
+}
+
+.message.user {
+  background: #fff;
+  align-self: flex-start;
+}
+
+.message.admin {
+  background: #dcf8c6;
+  align-self: flex-end;
+  margin-left: auto;
+}
