@@ -1,12 +1,15 @@
 import { db, ref, push, onChildAdded } from "./firebase.js";
+
+const chatBox = document.getElementById("chat-box");
+const chatInput = document.getElementById("chat-input");
+const sendBtn = document.getElementById("send-btn");
+
 if (!chatBox || !chatInput || !sendBtn) {
   console.warn("Chat elements not found in DOM");
   return;
 }
+
 const chatRef = ref(db, "messages");
-const chatBox = document.getElementById("chat-box");
-const chatInput = document.getElementById("chat-input");
-const sendBtn = document.getElementById("send-btn");
 
 sendBtn.addEventListener("click", () => {
   const text = chatInput.value.trim();
