@@ -7,11 +7,11 @@ function initChat() {
   const toggleBtn = document.getElementById("chat-toggle");
   const chatContainer = document.getElementById("chat-container");
 
-  // 💬 Mostrar/ocultar chat
+  // 💬 Mostrar/ocultar chat con animación
   if (toggleBtn && chatContainer) {
     toggleBtn.addEventListener("click", () => {
-      chatContainer.classList.toggle("hidden");
-      toggleBtn.textContent = chatContainer.classList.contains("hidden") ? "💬" : "❌";
+      const isHidden = chatContainer.classList.toggle("chat-container-hidden");
+      toggleBtn.textContent = isHidden ? "💬" : "❌";
     });
   }
 
@@ -22,6 +22,12 @@ function initChat() {
   }
 
   const chatRef = firebase.ref(firebase.db, "messages");
+
+  // 💬 Mensaje de bienvenida automático
+  const welcomeMsg = document.createElement("div");
+  welcomeMsg.className = "chat-message admin";
+  welcomeMsg.textContent = "[Ahora] ¡Hola! ¿En qué puedo ayudarte?";
+  chatBox.appendChild(welcomeMsg);
 
   // 📤 Enviar mensaje como usuario
   sendBtn.addEventListener("click", () => {
