@@ -1,6 +1,12 @@
 import * as firebase from "./firebase.js";
 
 function initChat() {
+  
+  let sessionId = localStorage.getItem("chatSessionId");
+if (!sessionId) {
+  sessionId = "session_" + Date.now() + "_" + Math.floor(Math.random() * 100000);
+  localStorage.setItem("chatSessionId", sessionId);
+}
   const chatBox = document.getElementById("chat-box");
   const chatInput = document.getElementById("chat-input");
   const sendBtn = document.getElementById("send-btn");
@@ -10,7 +16,7 @@ function initChat() {
     return;
   }
 
-  const chatRef = firebase.ref(firebase.db, "messages");
+  const chatRef = firebase.ref(firebase.db, `sessions/${sessionId}`);
 
   sendBtn.addEventListener("click", () => {
     const text = chatInput.value.trim();
